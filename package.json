@@ -1,0 +1,41 @@
+{
+  "name": "hive-mcp-dispute",
+  "version": "1.0.0",
+  "description": "MCP server for the Hive Dispute Observer. Surfaces real arbitration signals from public sources (Kleros, UMA Optimistic Oracle, Reality.eth) and on-chain reversal patterns. Hive does NOT arbitrate, judge, freeze funds, or enforce dispute outcomes. Real rails. No mock data.",
+  "type": "module",
+  "main": "server.js",
+  "bin": {
+    "hive-mcp-dispute": "./server.js"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "mcp",
+    "hive",
+    "dispute",
+    "arbitration",
+    "kleros",
+    "uma",
+    "reality-eth",
+    "chargeback",
+    "ai-agents",
+    "a2a",
+    "defi",
+    "observability"
+  ],
+  "author": "Steve Rotzin <steve@thehiveryiq.com> (https://www.thehiveryiq.com)",
+  "license": "MIT",
+  "homepage": "https://github.com/srotzin/hive-mcp-dispute",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/srotzin/hive-mcp-dispute"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

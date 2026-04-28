@@ -1,0 +1,107 @@
+# Smithery Registry — HiveDispute MCP Server
+# https://smithery.ai
+
+startCommand:
+  type: http
+  configSchema:
+    type: object
+    properties: {}
+    required: []
+  url: https://hivemorph.onrender.com/mcp/hive-mcp-dispute
+
+name: hive-mcp-dispute
+displayName: HiveDispute — Observational dispute/chargeback signal surface for agent-to-agent commerce
+version: "1.0.0"
+description: >
+  MCP server for the Hive Dispute Observer. Surfaces real arbitration signals from public sources (Kleros court-v2 subgraph, UMA Optimistic Oracle v3 subgraph, Reality.eth subgraph) with direct on-chain RPC fallback against the canonical contracts (KlerosLiquid, UMA OO v3, Reality.eth v3). Detects on-chain reversal patterns via Etherscan-family transaction scans on Ethereum, Base, and Arbitrum. Hive does NOT arbitrate, judge, freeze funds, or enforce dispute outcomes.
+
+  IMPORTANT: Hive does not arbitrate, judge, freeze funds, or enforce dispute outcomes. This is observational signal data only. Disputes are resolved by third-party protocols (Kleros, UMA, Reality.eth) or off-chain legal process. Hive is not a court.
+
+author:
+  name: Steve Rotzin
+  email: steve@thehiveryiq.com
+  url: https://www.thehiveryiq.com
+
+license: MIT
+homepage: https://github.com/srotzin/hive-mcp-dispute
+repository:
+  type: git
+  url: https://github.com/srotzin/hive-mcp-dispute
+
+transport: streamable-http
+endpoint: https://hivemorph.onrender.com/mcp
+protocol: "2024-11-05"
+brand_color: "#C08D23"
+
+categories:
+  - finance
+  - dispute-resolution
+  - arbitration
+  - observability
+  - web3
+  - defi
+  - agent-to-agent
+
+tags:
+  - mcp
+  - hive
+  - dispute
+  - arbitration
+  - kleros
+  - uma
+  - reality-eth
+  - chargeback
+  - ai-agents
+  - a2a
+  - defi
+  - observability
+
+tools:
+  - name: dispute_check
+    description: >
+      Given a counterparty address + chain, return public dispute history, active arbitration cases, and on-chain reversal-pattern flags. Sources: Kleros / UMA / Reality.eth (subgraph or direct on-chain) plus Etherscan-family transaction scans. Observational only.
+    inputs:
+      - name: address
+        type: string
+        required: true
+        description: "0x-prefixed counterparty address (20 bytes)"
+      - name: chain
+        type: string
+        required: true
+        description: "ethereum | base | arbitrum"
+  - name: dispute_providers
+    description: >
+      List available third-party arbitration protocols (Kleros, UMA Optimistic Oracle, Reality.eth) with current case load, intake URLs, and jurisdiction model. Hive only surfaces signal — Hive is not one of them.
+    inputs: []
+  - name: dispute_route
+    description: >
+      Given a case description, disputed amount in USD, and optional jurisdiction preference, return ranked arbitration provider options. NO automatic filing — Hive returns options + intake URLs only.
+    inputs:
+      - name: description
+        type: string
+        required: true
+        description: "Free-form case description (max 2000 chars)"
+      - name: amount_usd
+        type: number
+        required: true
+        description: "Disputed amount in USD"
+      - name: jurisdiction
+        type: string
+        required: false
+        description: "Optional jurisdiction preference (e.g. 'decentralized', 'optimistic', 'crowdsourced')"
+  - name: dispute_today
+    description: >
+      24-hour rollup: flagged-counterparty count + top arbitration providers by active case load.
+    inputs: []
+
+runtime:
+  type: node
+  version: ">=18"
+  command: node server.js
+  env:
+    - name: PORT
+      default: "3000"
+      required: false
+    - name: HIVE_BASE
+      default: "https://hivemorph.onrender.com"
+      required: false
