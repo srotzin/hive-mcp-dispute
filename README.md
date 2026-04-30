@@ -1,5 +1,7 @@
 # hive-mcp-dispute
 
+[![srotzin/hive-mcp-dispute MCP server](https://glama.ai/mcp/servers/srotzin/hive-mcp-dispute/badges/score.svg)](https://glama.ai/mcp/servers/srotzin/hive-mcp-dispute)
+
 [![Brand: Hive Civilization Gold](https://img.shields.io/badge/brand-%23C08D23-C08D23)](https://www.thehiveryiq.com)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![MCP: 2024-11-05](https://img.shields.io/badge/mcp-2024--11--05-blue)](https://modelcontextprotocol.io)
